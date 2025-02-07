@@ -1,10 +1,11 @@
 // LISTENER VARIABLES
 let lastTarget = null;
+let DEBUG = false;
 
 // EVENT LISTENERS
 document.addEventListener("mouseover", function (event) {
     lastTarget = event.target;
-    console.log("Hovered Element:", lastTarget);
+    DEBUG ?? console.log("Hovered Element:", lastTarget);
 }, true);
 
 document.addEventListener("keydown", function (event) {
@@ -12,11 +13,11 @@ document.addEventListener("keydown", function (event) {
     if (!lastTarget) return;
 
     let baseXPath = getElementXPath(lastTarget);
-    console.log("Key Pressed:", key, "XPath:", baseXPath);
+    DEBUG ?? console.log("Key Pressed:", key, "XPath:", baseXPath);
 
     if (baseXPath) {
         let similarXPath = generalizeXPath(baseXPath);
-        console.log("Generalized XPath:", similarXPath);
+        DEBUG ?? console.log("Generalized XPath:", similarXPath);
 
         // Append to all matching elements recursively
         appendToSimilarElements(similarXPath);
